@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './componentes/Header';
+import Formulario from './componentes/Formulario';
 
 class App extends Component {
   render(){
@@ -8,6 +9,7 @@ class App extends Component {
               <Header 
                 titulo="Aplicacion del Clima"
               />
+              <Formulario />
           </div>
         );
   }
