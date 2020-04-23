@@ -14,7 +14,10 @@ class Formulario extends Component {
             ciudad: this.ciudadRef.current.value,
             pais: this.paisRef.current.value
         }
-        console.log(respuesta);
+        // console.log(respuesta);
+
+        // Enviar por los props
+        this.props.buscandoClima(respuesta);
         
     }
 
