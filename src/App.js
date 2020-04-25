@@ -6,9 +6,12 @@ import Error from './componentes/Error'
 class App extends Component {
 
   state={
-    ciudad:'',
-    pais:'',
-    error: ''
+    error: '',
+    consulta:{}
+  }
+
+  componentDidUpdate(){
+    this.consultarAPI();
   }
 
   componentDidMount(){
@@ -25,11 +28,28 @@ class App extends Component {
         error:true
       })      
     }else{
-      console.log('Todo bien');
-      
+      // console.log('Todo bien');
+      this.setState({
+        consulta:respuesta
+      })
     }
     
   }
+
+  consultarAPI=()=>{
+    const {ciudad,pais}=this.state.consulta;
+
+    if(!ciudad || !pais) return null;
+
+    // console.log(`${ciudad} ${pais}`);
+    const appID='95205ad16019a9cabe176b3b829003d8';
+
+    const url=`https://samples.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appID}`
+
+    console.log(url);
+    
+  }
+
 
   render(){
 
