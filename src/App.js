@@ -7,7 +7,8 @@ class App extends Component {
 
   state={
     error: '',
-    consulta:{}
+    consulta:{},
+    respuesta:{}
   }
 
   componentDidUpdate(){
@@ -40,13 +41,45 @@ class App extends Component {
     const {ciudad,pais}=this.state.consulta;
 
     if(!ciudad || !pais) return null;
-
     // console.log(`${ciudad} ${pais}`);
+
+    // leer la url y agregamos el api key
     const appID='95205ad16019a9cabe176b3b829003d8';
 
     const url=`https://samples.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appID}`
 
-    console.log(url);
+    // console.log(url);
+    // const myHeaders = new Headers({
+    //   "Access-Control-Allow-Origin": "*",
+    //   "Content-Type": "application/json",
+    //   "Cache-Control":{ "max-age":0, "private":true, "must-revalidate":true},
+    //   "Content-Encoding" : "gzip",
+    //   "charset":"utf-8"
+    // });
+    const myHeaders=new Headers();
+    const fetchConfig = {
+      method: "GET",
+      headers: myHeaders,
+      mode: "cors",
+      cache: "default"
+    };
+
+    // Consulta con fetch
+    // fetch(url,{mode:"no-cors"})
+    fetch('https://cors-anywhere.herokuapp.com/' + url)
+    .then(respuesta =>{
+      return respuesta.json();
+      //  console.log(respuesta);
+  
+    })
+    .then(datos=>{
+      this.setState({
+        respuesta:datos
+      })
+      // console.log(datos);
+      
+    })
+    .catch(error=>console.log(error))
     
   }
 
