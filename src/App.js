@@ -9,11 +9,13 @@ class App extends Component {
   state={
     error: '',
     consulta:{},
-    respuesta:{}
+    resultado:{}
   }
 
-  componentDidUpdate(){
-    this.consultarAPI();
+  componentDidUpdate(prevProps,prevState){
+    if(prevState.consulta !== this.state.consulta){
+      this.consultarAPI();
+    }
   }
 
   componentDidMount(){
@@ -67,7 +69,7 @@ class App extends Component {
     })
     .then(datos=>{
       this.setState({
-        respuesta:datos
+        resultado:datos
       })
       // console.log(datos);
       

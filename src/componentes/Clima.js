@@ -4,7 +4,7 @@ class Clima extends Component {
     
     render() {
 
-        console.log(this.props.resulto);
+        console.log(this.props.resultado);
     
         return (
             <div className="container">
