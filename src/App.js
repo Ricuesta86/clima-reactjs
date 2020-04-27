@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './componentes/Header';
 import Formulario from './componentes/Formulario';
 import Error from './componentes/Error'
+import Clima from './componentes/Clima';
 
 class App extends Component {
 
@@ -31,7 +32,8 @@ class App extends Component {
     }else{
       // console.log('Todo bien');
       this.setState({
-        consulta:respuesta
+        consulta:respuesta,
+        error:false
       })
     }
     
@@ -56,16 +58,7 @@ class App extends Component {
     //   "Content-Encoding" : "gzip",
     //   "charset":"utf-8"
     // });
-    const myHeaders=new Headers();
-    const fetchConfig = {
-      method: "GET",
-      headers: myHeaders,
-      mode: "cors",
-      cache: "default"
-    };
 
-    // Consulta con fetch
-    // fetch(url,{mode:"no-cors"})
     fetch('https://cors-anywhere.herokuapp.com/' + url)
     .then(respuesta =>{
       return respuesta.json();
@@ -92,6 +85,8 @@ class App extends Component {
 
       if(error){
         resultado=<Error mensaje='Ambos campos son obligatorios.' />
+      }else{
+        resultado=<Clima resultado = {this.state.resultado } />
       }
 
 
