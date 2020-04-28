@@ -48,9 +48,9 @@ class App extends Component {
     // console.log(`${ciudad} ${pais}`);
 
     // leer la url y agregamos el api key
-    const appID='95205ad16019a9cabe176b3b829003d8';
+    const appID='4294c0304a3f8c479113ee73b4cc4ad0';
 
-    const url=`https://samples.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appID}`
+    const url=`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appID}`
 
     // console.log(url);
     // const myHeaders = new Headers({
@@ -61,7 +61,8 @@ class App extends Component {
     //   "charset":"utf-8"
     // });
 
-    fetch('https://cors-anywhere.herokuapp.com/' + url)
+    // fetch('https://cors-anywhere.herokuapp.com/' + url)
+    fetch(url)
     .then(respuesta =>{
       return respuesta.json();
       //  console.log(respuesta);
